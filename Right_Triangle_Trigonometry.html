@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Section 5.2: Trigonometry of Right Triangles</title>
+<meta name="description" content="Trigonometric ratios, special right triangles, and solving right triangles — an interactive college math lesson.">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.css"
+      integrity="sha384-WwGtaC6ywCHxA5cstpj/3+xIZvTez8dq2IcBQaXRkenHZ7FVVq1ZROtURwfbtTlG"
+      crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/katex.min.js"
+        integrity="sha384-a1WQdjRj162i159OYq041X6I4K8NenkrI09LlPmiHg0YOb7CR+wJOraXwK9abpnE"
+        crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.1/dist/contrib/auto-render.min.js"
+        integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz"
+        crossorigin="anonymous"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false,ignoredTags:['script','noscript','style','textarea','pre','code']});"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="hero">
+  <div class="wrap" style="padding:0">
+    <p class="eyebrow">College Math &middot; Section 5.2</p>
+    <h1>Trigonometry of Right Triangles</h1>
+    <p class="lede">Every right triangle hides three ratios that depend only on its angles, never on its size. This section defines those ratios, derives their values for the special angles, and puts them to work.</p>
+    <ul class="chips">
+      <li>Section 5.2</li>
+      <li>Interactive figures</li>
+      <li>10-question quiz</li>
+      <li><a href="index.html">All sections</a></li>
+    </ul>
+  </div>
+</header>
+
+<main class="wrap" id="main">
+
+<ul class="objectives">
+  <li class="obj-title">Learning objectives</li>
+  <li>Define the trigonometric ratios: sine, cosine, tangent, and their reciprocals.</li>
+  <li>Identify the trigonometric ratio values for $30^\circ$, $45^\circ$, and $60^\circ$ angles.</li>
+  <li>Solve right triangles and related applications.</li>
+</ul>
+
+<section class="section" id="similar">
+  <h2><span class="num">1</span>Similar Triangles</h2>
+
+  <p>Two triangles are <strong>similar</strong> if they have the same shape — that is, if their corresponding angles are congruent. A second, equivalent test: two triangles are similar <em>if and only if</em> their corresponding sides are proportional.</p>
+
+  <figure class="figure">
+    <svg id="fig-similar" viewBox="0 0 340 205" role="img" aria-label="Two similar triangles, ABC and RST, with corresponding angles marked.">
+      <polygon points="35,175 78,45 115,150" fill="none" stroke="#3a3a8c" stroke-width="2.5" stroke-linejoin="round"/>
+      <polygon points="195,175 258,30 310,148" fill="none" stroke="#0f766e" stroke-width="2.5" stroke-linejoin="round"/>
+      <g class="svg-labels">
+        <text x="24" y="192" class="vtx vtx-a">A</text>
+        <text x="70" y="32" class="vtx vtx-a">B</text>
+        <text x="116" y="158" class="vtx vtx-a">C</text>
+        <text x="182" y="192" class="vtx vtx-b">R</text>
+        <text x="250" y="18" class="vtx vtx-b">S</text>
+        <text x="311" y="156" class="vtx vtx-b">T</text>
+      </g>
+    </svg>
+    <figcaption>Corresponding angles: $\angle A \cong \angle R$, $\angle B \cong \angle S$, $\angle C \cong \angle T$. Double arcs mark $\angle A$ and $\angle R$, single arcs mark $\angle C$ and $\angle T$, and the orange arcs mark $\angle B$ and $\angle S$.</figcaption>
+  </figure>
+
+  <p>Writing the proportionality of corresponding sides and clearing fractions gives</p>
+  <p>$$\frac{AB}{RS}=\frac{AB}{BC}\cdot\frac{BC}{ST}=\frac{AB}{BC}\cdot\frac{AB}{RS},$$</p>
+  <p>which simplifies to $\frac{AB}{BC}=\frac{RS}{ST}$, and similarly for the other pair. So in any two similar triangles, the ratios of corresponding side lengths are equivalent.</p>
+
+  <p>This correspondence is the engine of the whole section: <strong>if two right triangles share an acute angle, they are similar</strong>, and therefore every ratio of their sides is fixed by that angle alone.</p>
+
+  <div class="lab">
+    <div class="canvas-side">
+      <svg id="simSvg" viewBox="0 0 300 240" role="img" aria-label="Two similar right triangles drawn to the same scale, showing that scaling changes the side lengths but not the ratios."></svg>
+    </div>
+    <div class="side">
+      <h4>Similarity is scale-invariant</h4>
+      <div class="control">
+        <label for="simScale">Scale factor <span class="val" id="simScaleVal">2.0&times;</span></label>
+        <input type="range" id="simScale" min="1" max="3" step="0.1" value="2">
+      </div>
+      <div class="readout">
+        <div class="row"><span class="k">Small triangle</span><span class="v">3, 4, 5</span></div>
+        <div class="row"><span class="k">Large triangle</span><span class="v" id="simBig">&mdash;</span></div>
+        <div class="row"><span class="k">$\sin\alpha$</span><span class="v" id="simSin">&mdash;</span></div>
+        <div class="row"><span class="k">$\sin\beta$</span><span class="v" id="simSinB">&mdash;</span></div>
+        <div class="row"><span class="k">$\tan\alpha=\tan\beta$</span><span class="v" id="simTan">&mdash;</span></div>
+      </div>
+      <p class="small muted" style="margin-top:1rem">The dashed triangle is the same shape, scaled up. Every side grows by the same factor &mdash; so every ratio is untouched. Trig ratios depend on the <em>angle</em>, not on the size of the triangle.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="ratios">
+  <h2><span class="num">2</span>Trigonometric Ratios</h2>
+
+  <p>Take a right triangle and name one of its acute angles $\theta$. The longest side, opposite the right angle, is the <strong>hypotenuse</strong>. Of the two shorter sides, the one touching $\theta$ is <strong>adjacent</strong> to $\theta$, and the one $\theta$ opens toward is <strong>opposite</strong> $\theta$.</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 380 250" role="img" aria-label="Right triangle with the hypotenuse, opposite side, and adjacent side labelled.">
+      <polygon points="60,200 250,200 250,68" fill="#f6f7fd" stroke="#3a3a8c" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M232,200 L232,182 L250,182" fill="none" stroke="#525874" stroke-width="1.8"/>
+      <text x="76" y="196" class="ang">θ</text>
+      <text x="300" y="138" class="side side-o">opposite</text>
+      <text x="140" y="228" class="side side-a">adjacent</text>
+      <text x="118" y="118" class="side side-h">hypotenuse</text>
+      <text x="258" y="140" class="len">b</text>
+      <text x="150" y="214" class="len">a</text>
+      <text x="140" y="102" class="len">c</text>
+    </svg>
+    <figcaption>The side names are always <em>relative to $\theta$</em>. Move $\theta$ and &ldquo;opposite&rdquo; and &ldquo;adjacent&rdquo; trade places.</figcaption>
+  </figure>
+
+  <div class="callout">
+    <span class="label">Definition</span>
+    <p>Suppose $\theta$ is an acute angle in a right triangle whose hypotenuse has length $c$, whose side adjacent to $\theta$ has length $a$, and whose side opposite $\theta$ has length $b$. Then</p>
+    <p>$$\begin{aligned}
+       \sin\theta &= \frac{\text{opposite}}{\text{hypotenuse}} = \frac{b}{c}\\[6pt]
+       \cos\theta &= \frac{\text{adjacent}}{\text{hypotenuse}} = \frac{a}{c}\\[6pt]
+       \tan\theta &= \frac{\text{opposite}}{\text{adjacent}} = \frac{b}{a}
+     \end{aligned}$$</p>
+    <p>and the three remaining ratios are their reciprocals:</p>
+    <p>$$\begin{aligned}
+       \csc\theta &= \frac{\text{hypotenuse}}{\text{opposite}} = \frac{c}{b}\\[6pt]
+       \sec\theta &= \frac{\text{hypotenuse}}{\text{adjacent}} = \frac{c}{a}\\[6pt]
+       \cot\theta &= \frac{\text{adjacent}}{\text{opposite}} = \frac{a}{b}
+     \end{aligned}$$</p>
+    <p class="mb-0 small muted">It is common practice to write $\sin\theta$ rather than $\sin(\theta)$.</p>
+  </div>
+
+<div class="lab">
+    <div class="canvas-side">
+      <svg id="explorer" viewBox="0 0 340 250" role="img" aria-label="Interactive right triangle. Drag the top vertex to change the acute angle."></svg>
+    </div>
+    <div class="side">
+      <h4>Explore the ratios</h4>
+      <div class="control">
+        <label for="thetaSlider"><span>Angle $\theta$</span> <span class="val" id="thetaVal">45&deg;</span></label>
+        <input type="range" id="thetaSlider" min="8" max="82" step="1" value="45">
+      </div>
+      <div class="control">
+        <span class="muted small">Drag the blue vertex in the diagram to open or close the angle.</span>
+        <div class="btn-row" style="margin-top:.5rem">
+          <button type="button" class="ghost" id="labelToggle" aria-pressed="false">Show $a$, $b$, $c$</button>
+        </div>
+      </div>
+      <div class="readout">
+        <div class="row"><span class="k">Opposite $b$</span><span class="v" id="roOpp">&mdash;</span></div>
+        <div class="row"><span class="k">Adjacent $a$</span><span class="v" id="roAdj">&mdash;</span></div>
+        <div class="row"><span class="k">Hypotenuse $c$</span><span class="v" id="roHyp">&mdash;</span></div>
+      </div>
+      <div class="ratio-grid">
+        <div class="ratio-tile"><span class="name">$\sin\theta$</span><span class="val" id="vSin">&mdash;</span></div>
+        <div class="ratio-tile"><span class="name">$\cos\theta$</span><span class="val" id="vCos">&mdash;</span></div>
+        <div class="ratio-tile"><span class="name">$\tan\theta$</span><span class="val" id="vTan">&mdash;</span></div>
+        <div class="ratio-tile"><span class="name">$\csc\theta$</span><span class="val" id="vCsc">&mdash;</span></div>
+        <div class="ratio-tile"><span class="name">$\sec\theta$</span><span class="val" id="vSec">&mdash;</span></div>
+        <div class="ratio-tile"><span class="name">$\cot\theta$</span><span class="val" id="vCot">&mdash;</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Two properties worth remembering</h3>
+    <ol style="margin-bottom:0">
+      <li><strong>Same angle, same ratios.</strong> For all right triangles with the same acute angle $\theta$, the triangles are similar, so the values of the trigonometric ratios of $\theta$ will be equal.</li>
+      <li><strong>Reciprocals.</strong> Cosecant, secant, and cotangent are reciprocals of sine, cosine, and tangent respectively. Once you know three, you know all six:
+        $$\csc\theta=\frac{1}{\sin\theta},\qquad \sec\theta=\frac{1}{\cos\theta},\qquad \cot\theta=\frac{1}{\tan\theta}$$</li>
+    </ol>
+  </div>
+
+<div class="example">
+    <span class="label">Example 1</span>
+    <p class="prompt">Use the triangle shown to evaluate $\sin\alpha$, $\cos\alpha$, $\tan\alpha$, $\csc\alpha$, $\sec\alpha$, and $\cot\alpha$.</p>
+    <figure class="figure">
+      <svg viewBox="0 0 300 235" role="img" aria-label="Right triangle with legs 3 and 4 and hypotenuse 5, angle alpha at the lower left.">
+        <polygon points="40,200 124,200 124,88" fill="#f6f7fd" stroke="#3a3a8c" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M106,200 L106,182 L124,182" fill="none" stroke="#525874" stroke-width="1.8"/>
+        <text x="50" y="192" class="ang">&alpha;</text>
+        <text x="76" y="222" class="len">3</text>
+        <text x="132" y="148" class="len">4</text>
+        <text x="58" y="134" class="len">5</text>
+        <text x="146" y="206" class="side side-a">adjacent</text>
+        <text x="150" y="132" class="side side-o">opposite</text>
+      </svg>
+      <figcaption>Angle $\alpha$ sits at the lower left, so the side of length $3$ is adjacent to it and the side of length $4$ is opposite it.</figcaption>
+    </figure>
+    <p>From the definitions of the trigonometric ratios,</p>
+    <p>$$\begin{aligned}
+       \sin\alpha &= \frac{\text{opposite}}{\text{hypotenuse}} = \frac{4}{5}\\[6pt]
+       \cos\alpha &= \frac{\text{adjacent}}{\text{hypotenuse}} = \frac{3}{5}\\[6pt]
+       \tan\alpha &= \frac{\text{opposite}}{\text{adjacent}} = \frac{4}{3}
+     \end{aligned}$$</p>
+    <p>The reciprocals give the remaining three values:</p>
+    <p>$$\begin{aligned}
+       \csc\alpha &= \frac{1}{\sin\alpha} = \frac{5}{4}\\[6pt]
+       \sec\alpha &= \frac{1}{\cos\alpha} = \frac{5}{3}\\[6pt]
+       \cot\alpha &= \frac{1}{\tan\alpha} = \frac{3}{4}
+     \end{aligned}$$</p>
+  </div>
+
+  <div class="example">
+    <span class="label">Example 2</span>
+    <p class="prompt">Verify that the two triangles below are similar, then evaluate the trigonometric ratio values for the angle in the second triangle that corresponds to $\alpha$. What can you deduce?</p>
+    <figure class="figure">
+      <svg viewBox="0 0 350 215" role="img" aria-label="Two similar right triangles, 3-4-5 and 9-12-15, with angles alpha and beta.">
+        <polygon points="40,190 79,190 79,138" fill="#f6f7fd" stroke="#3a3a8c" stroke-width="2.5" stroke-linejoin="round"/>
+        <polygon points="200,190 317,190 317,34" fill="#fdf4ec" stroke="#b4531a" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M63,190 L63,176 L79,176" fill="none" stroke="#525874" stroke-width="1.6"/>
+        <path d="M301,190 L301,176 L317,176" fill="none" stroke="#525874" stroke-width="1.6"/>
+        <text x="46" y="182" class="ang">&alpha;</text>
+        <text x="207" y="182" class="ang">&beta;</text>
+        <text x="52" y="208" class="len">3</text>
+        <text x="81" y="166" class="len">4</text>
+        <text x="50" y="152" class="len">5</text>
+        <text x="248" y="208" class="len">9</text>
+        <text x="319" y="114" class="len">12</text>
+        <text x="238" y="100" class="len">15</text>
+      </svg>
+      <figcaption>The second triangle is the first one scaled up by a factor of $3$ — and $\beta$ corresponds to $\alpha$.</figcaption>
+    </figure>
+    <p>The side lengths of the second triangle are proportional to those of the first by a scale factor of $3$:</p>
+    <p>$$\frac{9}{3}=\frac{12}{4}=\frac{15}{5}=3$$</p>
+    <p>So the triangles are similar, and $\beta=\alpha$ in measure. Writing <span class="nowrap">opp</span>, <span class="nowrap">adj</span>, and <span class="nowrap">hyp</span> for brevity:</p>
+    <p>$$\begin{aligned}
+       \sin\beta &= \frac{12}{15} = \frac{3\cdot4}{3\cdot5} = \frac{4}{5}\\[6pt]
+       \cos\beta &= \frac{9}{15} = \frac{3\cdot3}{3\cdot5} = \frac{3}{5}\\[6pt]
+       \tan\beta &= \frac{12}{9} = \frac{3\cdot4}{3\cdot3} = \frac{4}{3}
+     \end{aligned}$$</p>
+    <p>Comparing with Example 1, the values are identical. We conclude that <strong>trigonometric ratios are independent of the size of the triangle</strong> &mdash; they depend only on the angle.</p>
+  </div>
+
+<section class="section" id="pythagorean">
+  <h2><span class="num">3</span>The Pythagorean Theorem</h2>
+
+  <div class="callout sunk">
+    <span class="label">The Pythagorean Theorem</span>
+    <p>In a right triangle, the square of the length of the hypotenuse is equal to the sum of the squares of the lengths of its legs. In the triangle shown, $c^2=a^2+b^2$.</p>
+    <figure class="figure" style="margin:.8rem 0 0">
+      <svg viewBox="0 0 260 175" role="img" aria-label="Right triangle with legs a and b and hypotenuse c.">
+        <polygon points="45,140 200,140 200,55" fill="#f0f2f8" stroke="#3a3a8c" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M184,140 L184,124 L200,124" fill="none" stroke="#525874" stroke-width="1.8"/>
+        <text x="112" y="163" class="len">a</text>
+        <text x="208" y="102" class="len">b</text>
+        <text x="98" y="88" class="len">c</text>
+      </svg>
+      <figcaption class="mb-0">$c^2=a^2+b^2$</figcaption>
+    </figure>
+    <p class="mt-0">Solving for the hypotenuse gives $c=\pm\sqrt{a^2+b^2}$, and since $c$ is a length it must be positive, so $c=\sqrt{a^2+b^2}$. Likewise $a^2=c^2-b^2$ gives $a=\sqrt{c^2-b^2}$.</p>
+  </div>
+</section>
+
+<section class="section" id="special">
+  <h2><span class="num">4</span>Special Right Triangles</h2>
+
+  <p>Now that we have the Pythagorean theorem, we can find exact ratio values for the angles $30^\circ$, $45^\circ$, and $60^\circ$.</p>
+
+  <h3>Ratios of $30^\circ$–$60^\circ$–$90^\circ$ triangles</h3>
+  <p>We begin with $30^\circ$. Sketch a $30^\circ$–$60^\circ$–$90^\circ$ triangle with hypotenuse $c$ and envisage it as half of an equilateral triangle.</p>
+
+  <div class="lab">
+    <div class="canvas-side">
+      <div class="seg" role="group" aria-label="Choose a special triangle">
+        <button type="button" data-spec-tab="0" aria-pressed="true">30&deg;&ndash;60&deg;&ndash;90&deg;</button>
+        <button type="button" data-spec-tab="1" aria-pressed="false">45&deg;&ndash;45&deg;&ndash;90&deg;</button>
+      </div>
+      <svg id="specSvg" viewBox="0 0 330 250" role="img" aria-label="Step-by-step derivation of the special right triangles."></svg>
+      <div class="btn-row" style="justify-content:center;align-items:center">
+        <button type="button" class="ghost" id="specPrev">&#8592; Back</button>
+        <button type="button" class="ghost" id="specNext">Next &#8594;</button>
+        <span class="small muted" id="specStepLabel"></span>
+      </div>
+    </div>
+    <div class="side">
+      <div class="readout" data-spec-panel="0">The equilateral triangle has three $60^\circ$ angles and all sides equal to $c$.</div>
+      <div class="readout" data-spec-panel="1" hidden>The altitude from the apex bisects both the base and the apex angle, cutting the $60^\circ$ angle into two $30^\circ$ angles and forming a right angle at the base.</div>
+      <div class="readout" data-spec-panel="2" hidden>Let $x$ be the shortest side (opposite the $30^\circ$ angle). Then the hypotenuse is $c=2x$, and the Pythagorean theorem gives $a=\sqrt{(2x)^2-x^2}=\sqrt{3}\,x$.</div>
+      <div class="readout" data-spec-panel="3" hidden>The triangle is right isosceles, so the two legs are equal. Calling each $x$, the theorem gives $c=\sqrt{x^2+x^2}=\sqrt{2}\,x$.</div>
+      <div class="readout" data-spec-panel="4" hidden>So in a $45^\circ$–$45^\circ$–$90^\circ$ triangle the hypotenuse is $\sqrt{2}$ times a leg &mdash; and both acute angles have $\sin$ and $\cos$ equal to $\frac{\sqrt2}{2}$.</div>
+      <p class="small muted" style="margin-top:1rem">Step through the derivation, then use the results to find the exact ratio values below.</p>
+    </div>
+  </div>
+
+<h3>Ratio values for the standard angles</h3>
+
+  <p>Using $c=2x$ and $a=\sqrt{3}\,x$ for the $30^\circ$ triangle, the definitions give</p>
+  <p>$$\sin30^\circ=\frac{1}{2},\qquad \cos30^\circ=\frac{\sqrt3}{2},\qquad \tan30^\circ=\frac{\sqrt3}{3},$$</p>
+  <p>and taking reciprocals,</p>
+  <p>$$\csc30^\circ=2,\qquad \sec30^\circ=\frac{2\sqrt3}{3},\qquad \cot30^\circ=\sqrt3.$$</p>
+  <p>You may rationalize the denominator of $\tan30^\circ$ to get $\frac{1}{\sqrt3}=\frac{1}{3}\cdot\frac{\sqrt3}{\sqrt3}=\frac{\sqrt3}{3}$. These values apply to <em>any</em> $30^\circ$ angle. For the $45^\circ$–$45^\circ$–$90^\circ$ triangle, $c=\sqrt2\,x$ and both legs are $x$, so</p>
+  <p>$$\sin45^\circ=\frac{1}{\sqrt2}=\frac{\sqrt2}{2},\qquad \cos45^\circ=\frac{\sqrt2}{2},\qquad \tan45^\circ=1,$$
+  $$\csc45^\circ=\sqrt2,\qquad \sec45^\circ=\sqrt2,\qquad \cot45^\circ=1.$$</p>
+
+  <p>The $60^\circ$ values follow from the complements, or directly from the same triangle read from the other acute angle. Summarizing all three standard angles:</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>$\theta$</th><th>$\theta$ (rad)</th><th>$\sin\theta$</th><th>$\cos\theta$</th>
+          <th>$\tan\theta$</th><th>$\csc\theta$</th><th>$\sec\theta$</th><th>$\cot\theta$</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>$30^\circ$</th><td>$\dfrac{\pi}{6}$</td>
+          <td>$\dfrac{1}{2}$</td><td>$\dfrac{\sqrt3}{2}$</td><td>$\dfrac{\sqrt3}{3}$</td>
+          <td>$2$</td><td>$\dfrac{2\sqrt3}{3}$</td><td>$\sqrt3$</td>
+        </tr>
+        <tr>
+          <th>$45^\circ$</th><td>$\dfrac{\pi}{4}$</td>
+          <td>$\dfrac{\sqrt2}{2}$</td><td>$\dfrac{\sqrt2}{2}$</td><td>$1$</td>
+          <td>$\sqrt2$</td><td>$\sqrt2$</td><td>$1$</td>
+        </tr>
+        <tr>
+          <th>$60^\circ$</th><td>$\dfrac{\pi}{3}$</td>
+          <td>$\dfrac{\sqrt3}{2}$</td><td>$\dfrac{1}{2}$</td><td>$\sqrt3$</td>
+          <td>$\dfrac{2\sqrt3}{3}$</td><td>$2$</td><td>$\dfrac{\sqrt3}{3}$</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">You may see these with rationalized or non-rationalized denominators. It is often easier to work with the non-rationalized form, but be familiar with both.</p>
+</section>
+
+<section class="section" id="solving">
+  <h2><span class="num">5</span>Solving Standard Right Triangles</h2>
+
+  <p>We use the values in the table, along with the ratios of the $30^\circ$–$60^\circ$–$90^\circ$ and $45^\circ$–$45^\circ$–$90^\circ$ triangles, to determine missing angles and sides. This is called <strong>solving right triangles</strong>.</p>
+
+  <div class="example">
+    <span class="label">Example 3</span>
+    <p class="prompt">A right triangle has one angle of $60^\circ$ and a hypotenuse of length $20$. Find the unknown side lengths and the missing angle measure.</p>
+    <p>First the missing angle: the angles of a triangle sum to $180^\circ$, so</p>
+    <p>$$180^\circ-60^\circ-90^\circ=30^\circ.$$</p>
+    <p>Assign $a$ to the side adjacent to the $60^\circ$ angle and $b$ to the opposite side. Since this is a $30^\circ$–$60^\circ$–$90^\circ$ triangle, the hypotenuse is twice the shortest side. From $20=2x$ we get $x=10$, so $a=10$, and</p>
+    <p>$$b=\sqrt3\,x=3\cdot10=10\sqrt3.$$</p>
+    <figure class="figure">
+      <svg viewBox="0 0 300 245" role="img" aria-label="Right triangle with hypotenuse 20, legs 10 and 10 square root 3, angles 60 and 30 degrees.">
+        <polygon points="40,215 130,215 130,60" fill="#f6f7fd" stroke="#3a3a8c" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M114,215 L114,199 L130,199" fill="none" stroke="#525874" stroke-width="1.8"/>
+        <text x="54" y="206" class="ang">60&deg;</text>
+        <text x="142" y="74" class="ang">30&deg;</text>
+        <text x="85" y="236" class="len">10</text>
+        <text x="140" y="142" class="len">10&radic;3</text>
+        <text x="66" y="122" class="len">20</text>
+      </svg>
+      <figcaption>The completed triangle: hypotenuse $20$, legs $10$ and $10\sqrt3$, angles $30^\circ$ and $60^\circ$.</figcaption>
+    </figure>
+  </div>
+
+  <div class="example">
+    <span class="label">Example 4</span>
+    <p class="prompt">Find the measure of the missing angle and the lengths of the missing sides in the right triangle shown, where one angle is $30^\circ$ and the adjacent leg is $7$.</p>
+    <p>The missing angle is</p>
+    <p>$$180^\circ-90^\circ-30^\circ=60^\circ.$$</p>
+    <p>Label the hypotenuse $c$ and the side opposite the $30^\circ$ angle $b$. For $c$, use cosine:</p>
+    <p>$$\cos30^\circ=\frac{7}{c}\qquad\Longrightarrow\qquad c=\frac{7}{\cos30^\circ}=\frac{7}{\sqrt3/2}=\frac{14}{\sqrt3}$$</p>
+    <p>For $b$, use tangent:</p>
+    <p>$$\tan30^\circ=\frac{b}{7}\qquad\Longrightarrow\qquad b=7\tan30^\circ=7\cdot\frac{1}{\sqrt3}=\frac{7}{\sqrt3}$$</p>
+    <figure class="figure">
+      <svg viewBox="0 0 300 235" role="img" aria-label="Right triangle with leg 7, hypotenuse 14 over square root 3, and angle 30 degrees.">
+        <polygon points="40,200 180,200 180,119" fill="#f6f7fd" stroke="#3a3a8c" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M164,200 L164,184 L180,184" fill="none" stroke="#525874" stroke-width="1.8"/>
+        <text x="52" y="195" class="ang">30&deg;</text>
+        <text x="192" y="130" class="ang">60&deg;</text>
+        <text x="102" y="220" class="len">7</text>
+        <text x="188" y="164" class="len">7&frasl;&radic;3</text>
+        <text x="88" y="146" class="len">14&frasl;&radic;3</text>
+      </svg>
+      <figcaption>The completed triangle with the angle and both missing sides.</figcaption>
+    </figure>
+    <p class="mb-0">Note that we could have solved Example 4 using the method from Example 3, just as Example 3 could be solved with trigonometric ratio values.</p>
+  </div>
+</section>
+
+<section class="section" id="applications">
+  <h2><span class="num">6</span>Applications</h2>
+
+  <p>Right triangle trigonometry has many practical applications. Being able to compute the lengths of sides of a triangle makes it possible to find the height of a tall object without climbing to the top or extending a tape measure.</p>
+
+  <p>Two angles of view come up constantly:</p>
+
+  <figure class="figure">
+    <svg viewBox="0 0 360 235" role="img" aria-label="Schematics of the angle of inclination and the angle of depression.">
+      <line x1="25" y1="185" x2="150" y2="185" stroke="#525874" stroke-width="2"/>
+      <line x1="25" y1="185" x2="140" y2="55" stroke="#b4531a" stroke-width="2" stroke-dasharray="5 4"/>
+      <circle cx="140" cy="55" r="6" fill="#b4531a"/>
+      <path d="M25,185 L44,185 A19,19 0 0 0 37.58,170.77 Z" fill="#fdf0e5" stroke="#b4531a" stroke-width="1.5"/>
+      <text x="44" y="176" class="ang">&alpha;</text>
+      <text x="62" y="202" class="side">base line</text>
+      <text x="104" y="44" class="side">object</text>
+
+      <line x1="200" y1="50" x2="335" y2="50" stroke="#525874" stroke-width="2"/>
+      <line x1="200" y1="50" x2="305" y2="180" stroke="#b4531a" stroke-width="2" stroke-dasharray="5 4"/>
+      <circle cx="305" cy="180" r="6" fill="#b4531a"/>
+      <path d="M200,50 L219,50 A19,19 0 0 1 211.9,64.8 Z" fill="#fdf0e5" stroke="#b4531a" stroke-width="1.5"/>
+      <text x="222" y="64" class="ang">&beta;</text>
+      <text x="240" y="42" class="side">base line</text>
+      <text x="282" y="199" class="side">object</text>
+    </svg>
+    <figcaption>$\alpha$ is the angle of inclination (elevation); $\beta$ is the angle of depression. They are always equal when measured to the same object from opposite sides of the base line.</figcaption>
+  </figure>
+
+  <p>The <strong>angle of inclination</strong> (also called the angle of elevation) is the angle whose initial side is a horizontal base line and whose terminal side is the line of sight to an object above the base line. The <strong>angle of depression</strong> is the angle from the horizontal base line to a terminal side below it &mdash; what you see if you start looking horizontally and then look down.</p>
+
+<div class="example">
+    <span class="label">Example 5</span>
+    <p class="prompt">The angle of inclination from a point on the ground $30$ feet away from the base of a water tower to the top of the tower is $60^\circ$. Find the height of the water tower to the nearest foot.</p>
+    <figure class="figure">
+      <svg viewBox="0 0 300 235" role="img" aria-label="Right triangle representing a water tower, with base 30 feet, angle 60 degrees, and height h.">
+        <polygon points="50,200 230,200 230,45" fill="#f6f7fd" stroke="#3a3a8c" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M214,200 L214,184 L230,184" fill="none" stroke="#525874" stroke-width="1.8"/>
+        <text x="58" y="190" class="ang">60&deg;</text>
+        <text x="122" y="220" class="len">30 feet</text>
+        <text x="238" y="128" class="len">h</text>
+      </svg>
+      <figcaption>The tower height $h$ is opposite the $60^\circ$ angle; the $30$ foot distance is adjacent to it.</figcaption>
+    </figure>
+    <p>Let $h$ denote the height of the tower. Then</p>
+    <p>$$\tan60^\circ=\frac{h}{30}\qquad\Longrightarrow\qquad h=30\tan60^\circ=30\sqrt3\approx51.96.$$</p>
+    <p class="mb-0">Hence, the water tower is approximately $\boxed{52\text{ feet}}$ tall.</p>
+  </div>
+
+  <div class="example">
+    <span class="label">Example 6</span>
+    <p class="prompt">To determine the height of a California redwood tree, two sightings from the ground, one $200$ feet directly behind the other, are made. If the angles of inclination are $45^\circ$ and $30^\circ$, how tall is the tree to the nearest foot?</p>
+    <figure class="figure">
+      <svg viewBox="0 0 350 225" role="img" aria-label="Redwood tree of height h observed from two points 200 feet apart, with angles 30 and 45 degrees.">
+        <line x1="30" y1="192" x2="318" y2="192" stroke="#525874" stroke-width="2"/>
+        <line x1="30" y1="192" x2="318" y2="52" stroke="#3a3a8c" stroke-width="2"/>
+        <line x1="160" y1="192" x2="318" y2="52" stroke="#b4531a" stroke-width="2"/>
+        <line x1="318" y1="192" x2="318" y2="52" stroke="#3a3a8c" stroke-width="2.5"/>
+        <path d="M302,192 L302,176 L318,176" fill="none" stroke="#525874" stroke-width="1.8"/>
+        <text x="42" y="182" class="ang">30&deg;</text>
+        <text x="172" y="182" class="ang">45&deg;</text>
+        <text x="326" y="128" class="len">h</text>
+        <text x="62" y="212" class="len">200 ft.</text>
+        <text x="222" y="212" class="len">x ft.</text>
+      </svg>
+      <figcaption>The nearer sighting point sees the tree at $45^\circ$ and is $x$ feet from the base; the farther point is $200$ feet beyond it and sees the tree at $30^\circ$.</figcaption>
+    </figure>
+    <p>We have two unknowns: the height $h$ and the distance $x$ from the base of the tree to the first observation point. Using trigonometric ratios,</p>
+    <p>$$\tan45^\circ=\frac{h}{x},\qquad \tan30^\circ=\frac{h}{x+200}.$$</p>
+    <p>Since $\tan45^\circ=1$, the first equation gives $\frac{h}{x}=1$, so $x=h$. Substituting into the second equation,</p>
+    <p>$$\tan30^\circ=\frac{h}{h+200}\qquad\Longrightarrow\qquad \frac{1}{\sqrt3}=\frac{h}{h+200}$$</p>
+    <p>$$h\sqrt3=h+200\qquad\Longrightarrow\qquad h\sqrt3-h=200\qquad\Longrightarrow\qquad h(\sqrt3-1)=200$$</p>
+    <p>$$h=\frac{200}{\sqrt3-1}\approx273.205$$</p>
+    <p class="mb-0">Hence, the tree is approximately $\boxed{273\text{ feet}}$ tall.</p>
+  </div>
+
+<div class="example">
+    <span class="label">Example 7</span>
+    <p class="prompt">To what length must an adjustable ladder be set so that it reaches a windowsill $50$ feet above the ground, with the ladder resting against the building at an angle of $75^\circ$ with the ground?</p>
+    <figure class="figure">
+      <svg viewBox="0 0 300 235" role="img" aria-label="Right triangle with a ladder of length h against a wall, wall height 50 feet, angle 75 degrees.">
+        <polygon points="50,200 230,200 230,50" fill="#f6f7fd" stroke="#3a3a8c" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M214,200 L214,184 L230,184" fill="none" stroke="#525874" stroke-width="1.8"/>
+        <text x="58" y="190" class="ang">75&deg;</text>
+        <text x="238" y="128" class="len">50</text>
+        <text x="104" y="116" class="len">h</text>
+      </svg>
+      <figcaption>The ladder is the hypotenuse $h$; the $50$ foot wall is opposite the $75^\circ$ angle.</figcaption>
+    </figure>
+    <p>The angle of inclination is $75^\circ$ and the opposite side is $50$ feet long. The hypotenuse $h$ is the length of the ladder we need. Using sine,</p>
+    <p>$$\sin75^\circ=\frac{50}{h}\qquad\Longrightarrow\qquad h=\frac{50}{\sin75^\circ}$$</p>
+    <p>$$h\approx\frac{50}{0.9659258}\approx51.7638$$</p>
+    <p class="mb-0">Since $75^\circ$ is not a standard angle, a calculator gives us the approximate value of $\sin75^\circ$. The ladder should be set to approximately $\boxed{51.8\text{ feet}}$.</p>
+  </div>
+
+  <div class="card">
+    <h3>Using a calculator</h3>
+    <p>In the real world it is rare to find angles of exactly $30^\circ$, $45^\circ$, or $60^\circ$. For other angles you will need a <strong>scientific or graphing</strong> calculator &mdash; an arithmetic calculator cannot do trigonometry.</p>
+    <ul>
+      <li><strong>Check your angle mode first.</strong> The calculator must be set to degrees rather than radians.</li>
+      <li><strong>On a scientific calculator:</strong> punch in the angle measure, then the desired key &mdash; <span class="nowrap">sin</span>, <span class="nowrap">cos</span>, or <span class="nowrap">tan</span>.</li>
+      <li><strong>On a graphing calculator:</strong> punch in the desired function first, then the angle, then <span class="nowrap">enter</span> or <span class="nowrap">=</span>.</li>
+      <li><strong>For cosecant, secant, or cotangent:</strong> find sine, cosine, or tangent first, then apply the $x^{-1}$ key.</li>
+    </ul>
+  </div>
+
+  <div class="lab">
+    <div class="canvas-side">
+      <svg id="calcSvg" viewBox="0 0 320 215" role="img" aria-label="Diagram of an angle of elevation with a horizontal distance and a computed height."></svg>
+    </div>
+    <div class="side">
+      <h4>Angle of elevation calculator</h4>
+      <div class="control">
+        <label for="calcAngle">Angle of elevation <span class="val" id="calcAngleVal">45&deg;</span></label>
+        <input type="range" id="calcAngle" min="1" max="89" step="1" value="45">
+      </div>
+      <div class="control">
+        <label for="calcDist">Horizontal distance (feet)</label>
+        <input type="number" id="calcDist" value="30" min="1" max="100000" step="1">
+      </div>
+      <div class="readout">
+        <div class="row"><span class="k">Height</span><span class="v" id="calcHeight">&mdash;</span></div>
+        <div class="row"><span class="k">Distance to the top</span><span class="v" id="calcHyp">&mdash;</span></div>
+        <div class="row"><span class="k">$\tan\theta$</span><span class="v" id="calcTan">&mdash;</span></div>
+      </div>
+      <p class="small muted" style="margin-top:1rem">Try angle $60^\circ$ and distance $30$ to reproduce Example 5.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="quiz">
+  <h2><span class="num">7</span>Practice Quiz</h2>
+
+  <p>Test what you have learned. Select the best answer for each question, then check your work.</p>
+
+  <div class="quiz-bar">
+    <button class="primary" type="button" id="checkAll">Check all answers</button>
+    <button class="ghost" type="button" id="resetQuiz">Reset quiz</button>
+    <span class="score" id="quizScore">0 of 10 correct</span>
+  </div>
+
+  <div class="quiz-question" data-correct="a">
+    <p class="q-text"><span class="q-num">1</span>Which of the following is equivalent to $1$ radian?</p>
+    <div class="options">
+      <label><input type="radio" name="q1" value="a"> A) $57.3^\circ$</label>
+      <label><input type="radio" name="q1" value="b"> B) $90^\circ$</label>
+      <label><input type="radio" name="q1" value="c"> C) $180^\circ$</label>
+      <label><input type="radio" name="q1" value="d"> D) $360^\circ$</label>
+    </div>
+    <div class="fb-src" hidden>Correct! One radian is $\dfrac{180^\circ}{\pi}\approx57.3^\circ$.</div>
+    <button class="primary" type="button">Check answer</button>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" data-correct="b">
+    <p class="q-text"><span class="q-num">2</span>In a right triangle with acute angle $\theta$, the ratio $\sin\theta$ is</p>
+    <div class="options">
+      <label><input type="radio" name="q2" value="a"> A) $\dfrac{\text{adjacent}}{\text{hypotenuse}}$</label>
+      <label><input type="radio" name="q2" value="b"> B) $\dfrac{\text{opposite}}{\text{hypotenuse}}$</label>
+      <label><input type="radio" name="q2" value="c"> C) $\dfrac{\text{opposite}}{\text{adjacent}}$</label>
+      <label><input type="radio" name="q2" value="d"> D) $\dfrac{\text{hypotenuse}}{\text{opposite}}$</label>
+    </div>
+    <div class="fb-src" hidden>Correct! $\sin\theta=\dfrac{\text{opposite}}{\text{hypotenuse}}=\dfrac{b}{c}$.</div>
+    <button class="primary" type="button">Check answer</button>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" data-correct="c">
+    <p class="q-text"><span class="q-num">3</span>In a $30^\circ$–$60^\circ$–$90^\circ$ triangle, the ratio of the shortest side to the hypotenuse is</p>
+    <div class="options">
+      <label><input type="radio" name="q3" value="a"> A) $\dfrac{\sqrt3}{2}$</label>
+      <label><input type="radio" name="q3" value="b"> B) $\dfrac{\sqrt2}{2}$</label>
+      <label><input type="radio" name="q3" value="c"> C) $\dfrac{1}{2}$</label>
+      <label><input type="radio" name="q3" value="d"> D) $\dfrac{1}{3}$</label>
+    </div>
+    <div class="fb-src" hidden>Correct! The hypotenuse is twice the shortest side, so the ratio is $\dfrac{x}{2x}=\dfrac{1}{2}$.</div>
+    <button class="primary" type="button">Check answer</button>
+    <div class="feedback"></div>
+  </div>
+
+<div class="quiz-question" data-correct="b">
+    <p class="q-text"><span class="q-num">4</span>What is $\tan45^\circ$?</p>
+    <div class="options">
+      <label><input type="radio" name="q4" value="a"> A) $0$</label>
+      <label><input type="radio" name="q4" value="b"> B) $1$</label>
+      <label><input type="radio" name="q4" value="c"> C) $\sqrt2$</label>
+      <label><input type="radio" name="q4" value="d"> D) $2$</label>
+    </div>
+    <div class="fb-src" hidden>Correct! In a $45^\circ$–$45^\circ$–$90^\circ$ triangle the opposite and adjacent legs are equal, so $\tan45^\circ=1$.</div>
+    <button class="primary" type="button">Check answer</button>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" data-correct="a">
+    <p class="q-text"><span class="q-num">5</span>In a $45^\circ$–$45^\circ$–$90^\circ$ triangle, the hypotenuse is how many times the length of a leg?</p>
+    <div class="options">
+      <label><input type="radio" name="q5" value="a"> A) $\sqrt2$</label>
+      <label><input type="radio" name="q5" value="b"> B) $2$</label>
+      <label><input type="radio" name="q5" value="c"> C) $3$</label>
+      <label><input type="radio" name="q5" value="d"> D) $\sqrt3$</label>
+    </div>
+    <div class="fb-src" hidden>Correct! $c=\sqrt{x^2+x^2}=\sqrt2\,x$.</div>
+    <button class="primary" type="button">Check answer</button>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" data-correct="a">
+    <p class="q-text"><span class="q-num">6</span>Which expression is equivalent to $\csc\theta$?</p>
+    <div class="options">
+      <label><input type="radio" name="q6" value="a"> A) $\dfrac{1}{\sin\theta}$</label>
+      <label><input type="radio" name="q6" value="b"> B) $\sin\theta$</label>
+      <label><input type="radio" name="q6" value="c"> C) $\dfrac{1}{\cos\theta}$</label>
+      <label><input type="radio" name="q6" value="d"> D) $\cos\theta$</label>
+    </div>
+    <div class="fb-src" hidden>Correct! Cosecant is the reciprocal of sine.</div>
+    <button class="primary" type="button">Check answer</button>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" data-correct="a">
+    <p class="q-text"><span class="q-num">7</span>A right triangle has a $30^\circ$ angle and a hypotenuse of length $10$. What is the length of the shortest side?</p>
+    <div class="options">
+      <label><input type="radio" name="q7" value="a"> A) $5$</label>
+      <label><input type="radio" name="q7" value="b"> B) $10$</label>
+      <label><input type="radio" name="q7" value="c"> C) $5\sqrt3$</label>
+      <label><input type="radio" name="q7" value="d"> D) $\dfrac{10}{3}$</label>
+    </div>
+    <div class="fb-src" hidden>Correct! The hypotenuse is $2x$, so $x=5$.</div>
+    <button class="primary" type="button">Check answer</button>
+    <div class="feedback"></div>
+  </div>
+
+<div class="quiz-question" data-correct="b">
+    <p class="q-text"><span class="q-num">8</span>An angle of depression is measured</p>
+    <div class="options">
+      <label><input type="radio" name="q8" value="a"> A) upward from a horizontal base line</label>
+      <label><input type="radio" name="q8" value="b"> B) downward from a horizontal base line</label>
+      <label><input type="radio" name="q8" value="c"> C) between two vertical lines</label>
+      <label><input type="radio" name="q8" value="d"> D) from the positive y-axis</label>
+    </div>
+    <div class="fb-src" hidden>Correct! The observer starts looking horizontally and then looks down.</div>
+    <button class="primary" type="button">Check answer</button>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" data-correct="b">
+    <p class="q-text"><span class="q-num">9</span>What is $\tan60^\circ$?</p>
+    <div class="options">
+      <label><input type="radio" name="q9" value="a"> A) $\dfrac{1}{\sqrt3}$</label>
+      <label><input type="radio" name="q9" value="b"> B) $\sqrt3$</label>
+      <label><input type="radio" name="q9" value="c"> C) $\dfrac{\sqrt3}{3}$</label>
+      <label><input type="radio" name="q9" value="d"> D) $2$</label>
+    </div>
+    <div class="fb-src" hidden>Correct! $\tan60^\circ=\dfrac{\text{opposite}}{\text{adjacent}}=\dfrac{\sqrt3\,x}{x}=\sqrt3$.</div>
+    <button class="primary" type="button">Check answer</button>
+    <div class="feedback"></div>
+  </div>
+
+  <div class="quiz-question" data-correct="b">
+    <p class="q-text"><span class="q-num">10</span>A ladder $40$ feet long rests against a wall at an angle of $60^\circ$ with the ground. How high up the wall does it reach?</p>
+    <div class="options">
+      <label><input type="radio" name="q10" value="a"> A) $20\text{ ft}$</label>
+      <label><input type="radio" name="q10" value="b"> B) $20\sqrt3\text{ ft}$</label>
+      <label><input type="radio" name="q10" value="c"> C) $40\sqrt3\text{ ft}$</label>
+      <label><input type="radio" name="q10" value="d"> D) $\dfrac{40}{\sqrt3}\text{ ft}$</label>
+    </div>
+    <div class="fb-src" hidden>Correct! The height is the side opposite $60^\circ$, so $h=40\sin60^\circ=40\cdot\dfrac{\sqrt3}{2}=20\sqrt3\text{ ft}$.</div>
+    <button class="primary" type="button">Check answer</button>
+    <div class="feedback"></div>
+  </div>
+</section>
+
+<nav class="pagenav">
+  <a href="Angle_Measure.html">
+    <span class="dir">Previous</span>
+    <span class="ttl">5.1 &middot; Angles and Their Measure</span>
+  </a>
+  <a class="next" href="index.html">
+    <span class="dir">Next</span>
+    <span class="ttl">All sections</span>
+  </a>
+</nav>
+
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  var NS = "http://www.w3.org/2000/svg";
+
+  function svg(tag, attrs, content) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) {
+      if (Object.prototype.hasOwnProperty.call(attrs, k)) e.setAttribute(k, attrs[k]);
+    }
+    if (content != null) e.textContent = content;
+    return e;
+  }
+  function $(id) { return document.getElementById(id); }
+  function clear(node) { while (node.firstChild) node.removeChild(node.firstChild); }
+  function rad(d) { return d * Math.PI / 180; }
+  function deg(r) { return r * 180 / Math.PI; }
+  function num(n, p) { return n.toFixed(p === undefined ? 2 : p); }
+
+  function svgPoint(s, ev) {
+    var pt = s.createSVGPoint();
+    pt.x = ev.clientX;
+    pt.y = ev.clientY;
+    var p = pt.matrixTransform(s.getScreenCTM().inverse());
+    return { x: p.x, y: p.y };
+  }
+
+  // Angle arc of radius r at vertex v, spanning the rays toward p1 and p2.
+  function arc(parent, v, p1, p2, r, cls) {
+    var a1 = Math.atan2(p1[1] - v[1], p1[0] - v[0]);
+    var a2 = Math.atan2(p2[1] - v[1], p2[0] - v[0]);
+    var d = a2 - a1;
+    while (d > Math.PI) d -= 2 * Math.PI;
+    while (d < -Math.PI) d += 2 * Math.PI;
+    var x1 = v[0] + r * Math.cos(a1), y1 = v[1] + r * Math.sin(a1);
+    var x2 = v[0] + r * Math.cos(a1 + d), y2 = v[1] + r * Math.sin(a1 + d);
+    parent.appendChild(svg("path", {
+      d: "M" + x1 + "," + y1 + " A" + r + "," + r + " 0 0 " + (d > 0 ? 1 : 0) + " " + x2 + "," + y2,
+      "class": "arc " + cls
+    }));
+  }
+
+  // --- Correspondence marks for the static similar-triangles figure ---
+  function drawStaticArcs() {
+    var s = $("fig-similar");
+    if (!s) return;
+    var A = [35, 175], B = [78, 45], C = [115, 150];
+    var R = [195, 175], S = [258, 30], T = [310, 148];
+    arc(s, A, B, C, 13, "arc-a");
+    arc(s, A, B, C, 20, "arc-a");
+    arc(s, C, A, B, 14, "arc-a");
+    arc(s, R, S, T, 15, "arc-b");
+    arc(s, R, S, T, 23, "arc-b");
+    arc(s, T, R, S, 16, "arc-b");
+    arc(s, B, A, C, 13, "arc-c");
+    arc(s, S, R, T, 14, "arc-c");
+  }
+
+  // ===================== Right triangle explorer =====================
+  var EXP = { R: [255, 205], c: 10, ppu: 19, theta: 45, letters: false };
+
+  function drawExplorer() {
+    var s = $("explorer");
+    if (!s) return;
+    clear(s);
+
+    var t = rad(EXP.theta);
+    var a = EXP.c * Math.cos(t);
+    var b = EXP.c * Math.sin(t);
+    var R = EXP.R, T = [R[0] - a * EXP.ppu, R[1]], P = [R[0], R[1] - b * EXP.ppu];
+
+    s.appendChild(svg("polygon", {
+      points: T[0] + "," + T[1] + " " + P[0] + "," + P[1] + " " + R[0] + "," + R[1],
+      "class": "d-fill"
+    }));
+    s.appendChild(svg("polygon", {
+      points: T[0] + "," + T[1] + " " + P[0] + "," + P[1] + " " + R[0] + "," + R[1],
+      "class": "d-line"
+    }));
+
+    // right-angle marker at R
+    s.appendChild(svg("path", {
+      d: "M" + (R[0] - 14) + "," + R[1] + " L" + (R[0] - 14) + "," + (R[1] - 14) +
+         " L" + R[0] + "," + (R[1] - 14),
+      "class": "d-line mute"
+    }));
+
+    // theta marker at T
+    arc(s, T, R, P, 26, "arc-a");
+
+    var labels = EXP.letters
+      ? { adj: "a", opp: "b", hyp: "c" }
+      : { adj: "adjacent", opp: "opposite", hyp: "hypotenuse" };
+
+    var midH = [(T[0] + P[0]) / 2, (T[1] + P[1]) / 2];
+    var dx = midH[0] - R[0], dy = midH[1] - R[1];
+    var len = Math.hypot(dx, dy) || 1;
+    var hx = midH[0] + (dx / len) * 18, hy = midH[1] + (dy / len) * 18;
+
+    s.appendChild(svg("text", { x: (T[0] + R[0]) / 2, y: R[1] + 22, "text-anchor": "middle",
+      "class": "d-text" }, labels.adj));
+    s.appendChild(svg("text", { x: R[0] + 12, y: (R[1] + P[1]) / 2, "class": "d-text accent" }, labels.opp));
+    s.appendChild(svg("text", { x: hx, y: hy, "text-anchor": "middle", "class": "d-text accent" }, labels.hyp));
+    s.appendChild(svg("text", { x: T[0] + 17, y: T[1] - 12, "class": "d-text brand" }, "θ"));
+
+    var handle = svg("circle", { cx: P[0], cy: P[1], r: 8, "class": "d-handle" });
+    handle.dataset.role = "theta";
+    s.appendChild(handle);
+
+    $("thetaVal").innerHTML = EXP.theta + "°";
+    $("roOpp").textContent = num(b);
+    $("roAdj").textContent = num(a);
+    $("roHyp").textContent = num(EXP.c);
+    $("vSin").textContent = num(Math.sin(t), 3);
+    $("vCos").textContent = num(Math.cos(t), 3);
+    $("vTan").textContent = num(Math.tan(t), 3);
+    $("vCsc").textContent = num(1 / Math.sin(t), 3);
+    $("vSec").textContent = num(1 / Math.cos(t), 3);
+    $("vCot").textContent = num(1 / Math.tan(t), 3);
+  }
+
+  function setTheta(v) {
+    EXP.theta = Math.max(8, Math.min(82, Math.round(v)));
+    $("thetaSlider").value = EXP.theta;
+    drawExplorer();
+  }
+
+  function bindExplorer() {
+    var s = $("explorer");
+    if (!s) return;
+
+    $("thetaSlider").addEventListener("input", function () {
+      EXP.theta = parseInt(this.value, 10);
+      drawExplorer();
+    });
+
+    $("labelToggle").addEventListener("click", function () {
+      EXP.letters = !EXP.letters;
+      this.setAttribute("aria-pressed", String(EXP.letters));
+      this.innerHTML = EXP.letters ? "Show side names" : "Show $a$, $b$, $c$";
+      renderMath(this);
+      drawExplorer();
+    });
+
+    var dragging = false;
+    s.addEventListener("pointerdown", function (ev) {
+      var hit = ev.target.dataset && ev.target.dataset.role === "theta";
+      if (!hit) return;
+      dragging = true;
+      try { s.setPointerCapture(ev.pointerId); } catch (err) { /* capture is optional */ }
+      ev.preventDefault();
+    });
+    s.addEventListener("pointermove", function (ev) {
+      if (!dragging) return;
+      var pt = svgPoint(s, ev);
+      var B = Math.max(16, Math.min(190, EXP.R[1] - pt.y));
+      setTheta(deg(Math.asin(B / (EXP.c * EXP.ppu))));
+    });
+    s.addEventListener("pointerup", function (ev) {
+      dragging = false;
+      if (s.hasPointerCapture(ev.pointerId)) s.releasePointerCapture(ev.pointerId);
+    });
+    s.addEventListener("pointercancel", function () { dragging = false; });
+  }
+
+// ===================== Similar-triangles overlay =====================
+  var SIM = { svg: null, k: 2, ox1: 25, ox2: 150, oy: 200, ppu: 14 };
+
+  function drawSim() {
+    var s = SIM.svg;
+    if (!s) return;
+    clear(s);
+
+    var k = SIM.k;
+    var oy = SIM.oy, ppu = SIM.ppu;
+    var a1 = 3 * ppu, b1 = 4 * ppu;
+    var a2 = 3 * k * ppu, b2 = 4 * k * ppu;
+
+    var T1 = [SIM.ox1, oy], R1 = [SIM.ox1 + a1, oy], P1 = [SIM.ox1 + a1, oy - b1];
+    var T2 = [SIM.ox2, oy], R2 = [SIM.ox2 + a2, oy], P2 = [SIM.ox2 + a2, oy - b2];
+
+    s.appendChild(svg("polygon", {
+      points: T2[0] + "," + T2[1] + " " + P2[0] + "," + P2[1] + " " + R2[0] + "," + R2[1],
+      "class": "d-fill alt"
+    }));
+    s.appendChild(svg("polygon", {
+      points: T2[0] + "," + T2[1] + " " + P2[0] + "," + P2[1] + " " + R2[0] + "," + R2[1],
+      "class": "d-line alt dash"
+    }));
+    s.appendChild(svg("polygon", {
+      points: T1[0] + "," + T1[1] + " " + P1[0] + "," + P1[1] + " " + R1[0] + "," + R1[1],
+      "class": "d-fill"
+    }));
+    s.appendChild(svg("polygon", {
+      points: T1[0] + "," + T1[1] + " " + P1[0] + "," + P1[1] + " " + R1[0] + "," + R1[1],
+      "class": "d-line"
+    }));
+
+    // angle marks
+    arc(s, T1, R1, P1, 16, "arc-a");
+    arc(s, T2, R2, P2, 20, "arc-c");
+
+    function tag(x, y, text, cls, anchor) {
+      s.appendChild(svg("text", {
+        x: x, y: y, "class": cls, "text-anchor": anchor || "middle"
+      }, text));
+    }
+
+    function hypTag(T, R, P, text, cls) {
+      var mid = [(T[0] + P[0]) / 2, (T[1] + P[1]) / 2];
+      var cen = [(T[0] + R[0] + P[0]) / 3, (T[1] + R[1] + P[1]) / 3];
+      var dx = mid[0] - cen[0], dy = mid[1] - cen[1];
+      var L = Math.hypot(dx, dy) || 1;
+      tag(mid[0] + (dx / L) * 14, mid[1] + (dy / L) * 14 + 4, text, cls);
+    }
+
+    tag((T1[0] + R1[0]) / 2, oy + 18, "3", "d-text sm brand");
+    tag(R1[0] + 13, (oy + P1[1]) / 2 + 4, "4", "d-text sm brand");
+    hypTag(T1, R1, P1, "5", "d-text sm brand");
+    tag(T1[0] + 26, oy - 14, "α", "d-text brand");
+
+    tag((T2[0] + R2[0]) / 2, oy + 18, String(3 * k), "d-text sm accent");
+    tag(R2[0] + 13, (oy + P2[1]) / 2 + 4, String(4 * k), "d-text sm accent");
+    hypTag(T2, R2, P2, String(5 * k), "d-text sm accent");
+    tag(T2[0] + 26, oy - 14, "β", "d-text accent");
+
+    $("simScaleVal").textContent = k.toFixed(1) + "×";
+    $("simBig").textContent = (3 * k) + ", " + (4 * k) + ", " + (5 * k);
+    $("simSin").textContent = "4/5 = 0.800";
+    $("simSinB").textContent = (4 * k) + "/" + (5 * k) + " = 0.800";
+    $("simTan").textContent = "4/3 = 1.333";
+  }
+
+  // ===================== Special right triangles =====================
+  var SPEC = { tab: 0, stage: 0, stages: [[0, 1, 2], [3, 4]] };
+
+  function specLabel(s, x, y, text, cls, anchor) {
+    s.appendChild(svg("text", { x: x, y: y, "class": cls, "text-anchor": anchor || "middle" }, text));
+  }
+
+  // Label placed just outside the midpoint of edge A-B, away from centroid cen.
+  function edgeLabel(s, A, B, cen, text, cls, dist) {
+    var mid = [(A[0] + B[0]) / 2, (A[1] + B[1]) / 2];
+    var dx = mid[0] - cen[0], dy = mid[1] - cen[1];
+    var L = Math.hypot(dx, dy) || 1;
+    var d = dist === undefined ? 20 : dist;
+    s.appendChild(svg("text", {
+      x: mid[0] + (dx / L) * d, y: mid[1] + (dy / L) * d + 5,
+      "class": cls, "text-anchor": "middle"
+    }, text));
+  }
+
+  function drawSpec() {
+    var s = $("specSvg");
+    if (!s) return;
+    clear(s);
+
+    var stage = SPEC.stages[SPEC.tab][SPEC.stage];
+
+    if (stage <= 2) {
+      var L = [75, 205], R = [255, 205], T = [165, 49], M = [165, 205];
+      s.appendChild(svg("polygon", {
+        points: L[0] + "," + L[1] + " " + T[0] + "," + T[1] + " " + R[0] + "," + R[1],
+        "class": "d-fill"
+      }));
+      s.appendChild(svg("polygon", {
+        points: L[0] + "," + L[1] + " " + T[0] + "," + T[1] + " " + R[0] + "," + R[1],
+        "class": "d-line"
+      }));
+      specLabel(s, L[0] + 17, L[1] - 12, "60°", "d-text brand");
+      specLabel(s, R[0] - 17, R[1] - 12, "60°", "d-text brand");
+      specLabel(s, T[0], T[1] - 10, "60°", "d-text brand");
+      var cen = [(L[0] + R[0] + T[0]) / 3, (L[1] + R[1] + T[1]) / 3];
+      edgeLabel(s, L, T, cen, "c", "d-text accent");
+      edgeLabel(s, T, R, cen, "c", "d-text accent");
+      edgeLabel(s, L, R, cen, "c", "d-text accent");
+
+      if (stage >= 1) {
+        s.appendChild(svg("line", {
+          x1: T[0], y1: T[1], x2: M[0], y2: M[1], "class": "d-line alt dash"
+        }));
+        specLabel(s, T[0] + 44, T[1] + 34, "altitude", "d-text sm accent", "start");
+      }
+      if (stage === 2) {
+        s.appendChild(svg("polygon", {
+          points: L[0] + "," + L[1] + " " + T[0] + "," + T[1] + " " + M[0] + "," + M[1],
+          "class": "d-fill alt"
+        }));
+        s.appendChild(svg("polygon", {
+          points: L[0] + "," + L[1] + " " + T[0] + "," + T[1] + " " + M[0] + "," + M[1],
+          "class": "d-line alt"
+        }));
+        specLabel(s, M[0] + 12, M[1] - 12, "90°", "d-text accent", "start");
+      }
+    } else {
+      var A = [70, 205], B = [175, 205], C = [175, 100];
+      s.appendChild(svg("polygon", {
+        points: A[0] + "," + A[1] + " " + B[0] + "," + B[1] + " " + C[0] + "," + C[1],
+        "class": "d-fill"
+      }));
+      s.appendChild(svg("polygon", {
+        points: A[0] + "," + A[1] + " " + B[0] + "," + B[1] + " " + C[0] + "," + C[1],
+        "class": "d-line"
+      }));
+      s.appendChild(svg("path", {
+        d: "M" + (B[0] - 14) + "," + B[1] + " L" + (B[0] - 14) + "," + (B[1] - 14) +
+           " L" + B[0] + "," + (B[1] - 14),
+        "class": "d-line mute"
+      }));
+      arc(s, A, B, C, 22, "arc-a");
+      arc(s, C, B, A, 22, "arc-a");
+      specLabel(s, A[0] + 16, A[1] - 10, "45°", "d-text brand");
+      specLabel(s, C[0] - 16, C[1] + 20, "45°", "d-text brand");
+      specLabel(s, (A[0] + B[0]) / 2, A[1] + 20, "x", "d-text");
+      specLabel(s, B[0] + 18, (B[1] + C[1]) / 2, "x", "d-text");
+      specLabel(s, (A[0] + C[0]) / 2 - 8, (A[1] + C[1]) / 2 - 6, "√2 x", "d-text accent");
+      if (stage === 4) {
+        specLabel(s, 165, 240, "c = √(x² + x²) = √2 x", "d-text sm mute");
+      }
+    }
+
+    var panels = document.querySelectorAll("[data-spec-panel]");
+    for (var i = 0; i < panels.length; i++) {
+      panels[i].hidden = String(panels[i].dataset.specPanel) !== String(stage);
+    }
+    $("specStepLabel").textContent = "Step " + (SPEC.stage + 1) + " of " + SPEC.stages[SPEC.tab].length;
+    $("specPrev").disabled = SPEC.stage === 0;
+    $("specNext").disabled = SPEC.stage === SPEC.stages[SPEC.tab].length - 1;
+  }
+
+// ===================== Elevation calculator =====================
+  function drawCalc() {
+    var s = $("calcSvg");
+    if (!s) return;
+    clear(s);
+
+    var ang = parseInt($("calcAngle").value, 10);
+    var dist = parseFloat($("calcDist").value);
+    if (!isFinite(dist) || dist <= 0) dist = 1;
+
+    var t = rad(ang);
+    var h = dist * Math.tan(t);
+    var hyp = dist / Math.cos(t);
+
+    var ox = 52, oy = 185;
+    var w = 240;
+    var hh = w * Math.tan(t);
+    if (hh > 140) { var sc = 140 / hh; hh = 140; w = w * sc; }
+
+    s.appendChild(svg("line", { x1: 26, y1: oy, x2: 300, y2: oy, "class": "d-line mute" }));
+    s.appendChild(svg("polygon", {
+      points: ox + "," + oy + " " + (ox + w) + "," + oy + " " + (ox + w) + "," + (oy - hh),
+      "class": "d-fill"
+    }));
+    s.appendChild(svg("polygon", {
+      points: ox + "," + oy + " " + (ox + w) + "," + oy + " " + (ox + w) + "," + (oy - hh),
+      "class": "d-line"
+    }));
+    s.appendChild(svg("path", {
+      d: "M" + (ox + w - 13) + "," + oy + " L" + (ox + w - 13) + "," + (oy - 13) +
+         " L" + (ox + w) + "," + (oy - 13),
+      "class": "d-line mute"
+    }));
+    arc(s, [ox, oy], [ox + w, oy], [ox + w, oy - hh], 24, "arc-a");
+    s.appendChild(svg("text", { x: ox + 16, y: oy - 12, "class": "d-text brand" }, "θ"));
+    s.appendChild(svg("text", { x: (ox + ox + w) / 2, y: oy + 20, "class": "d-text sm" },
+      dist + " ft"));
+    s.appendChild(svg("text", { x: ox + w + 12, y: oy - hh / 2, "class": "d-text accent" }, "h"));
+    s.appendChild(svg("circle", { cx: ox + w, cy: oy - hh, r: 5, "class": "d-handle alt" }));
+
+    $("calcAngleVal").innerHTML = ang + "°";
+    $("calcHeight").textContent = num(h, 1) + " ft";
+    $("calcHyp").textContent = num(hyp, 1) + " ft";
+    $("calcTan").textContent = num(Math.tan(t), 4);
+  }
+
+  // ===================== Quiz =====================
+  function renderMath(el) {
+    if (typeof renderMathInElement !== "function") return;
+    renderMathInElement(el, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false }
+      ],
+      throwOnError: false,
+      ignoredTags: ["script", "noscript", "style", "textarea", "pre", "code"]
+    });
+  }
+
+  function gradeQuestion(q) {
+    var picked = q.querySelector("input:checked");
+    var fb = q.querySelector(".feedback");
+    var source = q.querySelector(".fb-src");
+    if (!picked) {
+      fb.className = "feedback show neutral";
+      fb.textContent = "Please select an answer.";
+      return false;
+    }
+    var ok = picked.value === q.dataset.correct;
+    fb.className = "feedback show " + (ok ? "correct" : "incorrect");
+    fb.innerHTML = (ok ? "Correct! " : "Not quite. ") + source.innerHTML;
+    renderMath(fb);
+    return ok;
+  }
+
+  function updateScore() {
+    var qs = document.querySelectorAll(".quiz-question");
+    var right = 0;
+    for (var i = 0; i < qs.length; i++) {
+      var picked = qs[i].querySelector("input:checked");
+      if (picked && picked.value === qs[i].dataset.correct) right++;
+    }
+    $("quizScore").textContent = right + " of " + qs.length + " correct";
+  }
+
+  function bindQuiz() {
+    var qs = document.querySelectorAll(".quiz-question");
+    for (var i = 0; i < qs.length; i++) {
+      (function (q) {
+        q.querySelector("button").addEventListener("click", function () {
+          gradeQuestion(q);
+          updateScore();
+        });
+        var radios = q.querySelectorAll("input[type=radio]");
+        for (var j = 0; j < radios.length; j++) {
+          radios[j].addEventListener("change", updateScore);
+        }
+      })(qs[i]);
+    }
+
+    $("checkAll").addEventListener("click", function () {
+      for (var i = 0; i < qs.length; i++) gradeQuestion(qs[i]);
+      updateScore();
+    });
+
+    $("resetQuiz").addEventListener("click", function () {
+      for (var i = 0; i < qs.length; i++) {
+        var radios = qs[i].querySelectorAll("input[type=radio]");
+        for (var j = 0; j < radios.length; j++) radios[j].checked = false;
+        var fb = qs[i].querySelector(".feedback");
+        fb.className = "feedback";
+        fb.textContent = "";
+      }
+      updateScore();
+    });
+  }
+
+  // ===================== Init =====================
+  document.addEventListener("DOMContentLoaded", function () {
+    drawStaticArcs();
+
+    bindExplorer();
+    drawExplorer();
+
+    SIM.svg = $("simSvg");
+    $("simScale").addEventListener("input", function () {
+      SIM.k = parseFloat(this.value);
+      drawSim();
+    });
+    drawSim();
+
+    var tabs = document.querySelectorAll("[data-spec-tab]");
+    for (var i = 0; i < tabs.length; i++) {
+      (function (tab, idx) {
+        tab.addEventListener("click", function () {
+          SPEC.tab = idx;
+          SPEC.stage = 0;
+          for (var j = 0; j < tabs.length; j++) {
+            tabs[j].setAttribute("aria-pressed", String(j === idx));
+          }
+          drawSpec();
+        });
+      })(tabs[i], i);
+    }
+    $("specPrev").addEventListener("click", function () {
+      if (SPEC.stage > 0) { SPEC.stage--; drawSpec(); }
+    });
+    $("specNext").addEventListener("click", function () {
+      if (SPEC.stage < SPEC.stages[SPEC.tab].length - 1) { SPEC.stage++; drawSpec(); }
+    });
+    drawSpec();
+
+    $("calcAngle").addEventListener("input", drawCalc);
+    $("calcDist").addEventListener("input", drawCalc);
+    drawCalc();
+
+    bindQuiz();
+  });
+})();
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
