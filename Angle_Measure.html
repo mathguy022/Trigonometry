@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>College Math: Section 5.1 - Angles and Their Measure</title>
+<style>
+:root {
+--primary: #2c3e50;
+--accent: #3498db;
+--light-bg: #f8f9fa;
+--border: #dee2e6;
+--success: #27ae60;
+--error: #c0392b;
+}
+
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+line-height: 1.6;
+color: #333;
+max-width: 900px;
+margin: 0 auto;
+padding: 20px;
+background-color: #fff;
+}
+
+h1, h2, h3 {
+color: var(--primary);
+border-bottom: 2px solid var(--accent);
+padding-bottom: 10px;
+}
+
+h1 { text-align: center; border-bottom: none; margin-bottom: 30px; }
+
+.section {
+margin-bottom: 40px;
+padding: 20px;
+background-color: var(--light-bg);
+border-radius: 8px;
+border-left: 5px solid var(--accent);
+}
+
+.concept-box {
+background-color: #e8f4fc;
+padding: 15px;
+border-radius: 5px;
+margin: 15px 0;
+}
+
+/* Math Formatting Styles */
+.math-fraction {
+display: inline-block;
+vertical-align: middle;
+text-align: center;
+font-size: 0.9em;
+}
+.math-num {
+display: block;
+border-bottom: 1px solid currentColor;
+padding: 0 2px;
+}
+.math-den {
+display: block;
+padding: 0 2px;
+}
+.formula {
+font-family: 'Times New Roman', Times, serif;
+font-size: 1.2em;
+font-style: italic;
+background: #fff;
+padding: 5px 10px;
+border: 1px solid #ccc;
+display: inline-block;
+margin: 5px 0;
+}
+
+/* Interactive Elements Styles */
+.interactive-container {
+display: flex;
+flex-wrap: wrap;
+gap: 20px;
+justify-content: center;
+align-items: flex-start;
+margin-top: 20px;
+}
+
+.canvas-wrapper {
+background: white;
+padding: 10px;
+border: 1px solid var(--border);
+border-radius: 8px;
+box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+canvas {
+background-color: #fff;
+cursor: crosshair;
+display: block;
+}
+
+.controls {
+flex: 1;
+min-width: 300px;
+padding: 10px;
+}
+
+input[type="range"] {
+width: 100%;
+margin: 10px 0;
+}
+
+.data-display {
+font-family: monospace;
+background: #eee;
+padding: 10px;
+border-radius: 4px;
+margin-bottom: 10px;
+}
+
+/* Table Styles */
+table {
+width: 100%;
+border-collapse: collapse;
+margin: 20px 0;
+}
+th, td {
+border: 1px solid var(--border);
+padding: 10px;
+text-align: center;
+}
+th {
+background-color: var(--primary);
+color: white;
+}
+tr:nth-child(even) {
+background-color: #f2f2f2;
+}
+
+/* Quiz Styles */
+.quiz-question {
+background: white;
+border: 1px solid var(--border);
+padding: 15px;
+margin-bottom: 15px;
+border-radius: 5px;
+}
+.options label {
+display: block;
+margin: 5px 0;
+cursor: pointer;
+}
+.feedback {
+margin-top: 10px;
+font-weight: bold;
+display: none;
+}
+.correct { color: var(--success); }
+.incorrect { color: var(--error); }
+
+button.check-btn {
+background-color: var(--accent);
+color: white;
+border: none;
+padding: 8px 15px;
+border-radius: 4px;
+cursor: pointer;
+margin-top: 10px;
+}
+button.check-btn:hover {
+background-color: #2980b9;
+}
+
+.example-box {
+border: 1px dashed var(--primary);
+padding: 15px;
+margin: 15px 0;
+background-color: #fffdf0;
+}
+</style>
+</head>
+<body>
+
+<h1>Section 5.1: Angles and Their Measure</h1>
+
+<!-- Prerequisites -->
+<div class="section">
+<h3>Prerequisite Knowledge</h3>
+<p>Before starting this lesson, ensure you are comfortable with:</p>
+<ul>
+<li>Basic geometry of circles (radius, diameter, circumference).</li>
+<li>The concept of a right angle (90°).</li>
+<li>Basic algebraic manipulation (solving for variables).</li>
+</ul>
+</div>
+
+<!-- Warm Up -->
+<div class="section">
+<h3>Warm-Up / Review</h3>
+<p><strong>Question:</strong> A full circle represents a complete rotation. How many degrees are in a full circle?</p>
+<div class="concept-box">
+<strong>Answer:</strong> 360 degrees.
+</div>
+<p><strong>Question:</strong> If you cut a pizza into 4 equal slices, what fraction of the pizza is one slice?</p>
+<div class="concept-box">
+<strong>Answer:</strong> 1/4. In terms of angles, this is 1/4 of 360°, which is 90°.
+</div>
+</div>
+
+<!-- Concept Introduction -->
+<div class="section">
+<h2>1. Defining Angles: Degrees vs. Radians</h2>
+<p>In college mathematics, we primarily use two units to measure angles:</p>
+
+<h4>A. Degrees (°)</h4>
+<p>A degree is defined by dividing a circle into 360 equal parts. This is an arbitrary system based on ancient Babylonian astronomy.</p>
+
+<h4>B. Radians (rad)</h4>
+<p>A radian is a "natural" unit of measurement based on the geometry of the circle itself.</p>
+<div class="concept-box">
+<strong>Definition:</strong> One radian is the angle subtended at the center of a circle by an arc that is equal in length to the radius of the circle.
+</div>
+<p><strong>Why use Radians?</strong> They simplify calculus formulas later on. For example, the derivative of sin(x) is cos(x) only if x is in radians.</p>
+
+<h3>The Conversion Factor</h3>
+<p>Since a full circle is 360° and also 2π radians:</p>
+<div class="formula">360° = 2π radians</div>
+<p>Dividing both sides by 2, we get the fundamental relationship:</p>
+<div class="formula">180° = π radians</div>
+
+<p>To convert, we use the ratio:</p>
+<ul>
+<li>
+<strong>Degrees to Radians:</strong> Multiply by
+<span class="math-fraction"><span class="math-num">π</span><span class="math-den">180</span></span>
+</li>
+<li>
+<strong>Radians to Degrees:</strong> Multiply by
+<span class="math-fraction"><span class="math-num">180</span><span class="math-den">π</span></span>
+</li>
+</ul>
+</div>
+
+<!-- Interactive Graph 1: Unit Circle -->
+<div class="section">
+<h2>2. Interactive Visualization: The Unit Circle</h2>
+<p>Use the slider below to rotate the terminal side of the angle. Observe how the angle changes in both degrees and radians.</p>
+
+<div class="interactive-container">
+<div class="canvas-wrapper">
+<canvas id="unitCircleCanvas" width="300" height="300"></canvas>
+</div>
+<div class="controls">
+<label for="angleSlider">Drag to change angle:</label>
+<input type="range" id="angleSlider" min="-360" max="360" value="45">
+
+<div class="data-display">
+<div><strong>Angle (Degrees):</strong> <span id="degDisplay">45</span>°</div>
+<div><strong>Angle (Radians):</strong> <span id="radDisplay">0.785</span> rad</div>
+<div style="font-size: 0.9em; color: #666; margin-top:5px;">
+Note: Positive angles go Counter-Clockwise.<br>
+Negative angles go Clockwise.
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Conversion Practice -->
+<div class="section">
+<h2>3. Converting Measures</h2>
+<p>Let's practice converting. Remember: To go from Degrees to Radians, multiply by <span class="math-fraction"><span class="math-num">π</span><span class="math-den">180</span></span>.</p>
+
+<div class="example-box">
+<strong>Example 1:</strong> Convert 135° to radians.
+<br><br>
+<strong>Step 1:</strong> Set up the multiplication.
+135 · <span class="math-fraction"><span class="math-num">π</span><span class="math-den">180</span></span>
+<br>
+<strong>Step 2:</strong> Simplify the fraction. Both numbers are divisible by 45.
+135 ÷ 45 = 3
+<br>
+180 ÷ 45 = 4
+<br>
+<strong>Answer:</strong> <span class="math-fraction"><span class="math-num">3π</span><span class="math-den">4</span></span> radians.
+</div>
+
+<div class="example-box">
+<strong>Example 2:</strong> Convert <span class="math-fraction"><span class="math-num">5π</span><span class="math-den">6</span></span> radians to degrees.
+<br><br>
+<strong>Step 1:</strong> Multiply by <span class="math-fraction"><span class="math-num">180</span><span class="math-den">π</span></span>.
+<span class="math-fraction"><span class="math-num">5π</span><span class="math-den">6</span></span> · <span class="math-fraction"><span class="math-num">180</span><span class="math-den">π</span></span>
+<br>
+<strong>Step 2:</strong> Cancel π and divide 180 by 6.
+5 · 30 = 150
+<br>
+<strong>Answer:</strong> 150°.
+</div>
+</div>
+
+<!-- Standard Position & Coterminal -->
+<div class="section">
+<h2>4. Standard Position & Coterminal Angles</h2>
+
+<h3>Standard Position</h3>
+<p>An angle is in <strong>standard position</strong> if:</p>
+<ol>
+<li>Its vertex is at the origin (0,0).</li>
+<li>Its initial side lies along the positive x-axis.</li>
+</ol>
+
+<h3>Coterminal Angles</h3>
+<p>Coterminal angles share the same terminal side. You find them by adding or subtracting full rotations (360° or 2π).</p>
+<div class="formula">Coterminal Angle = θ + 360° · k (or θ + 2π · k)</div>
+<p>Where k is any integer (1, -1, 2, etc.).</p>
+
+<div class="example-box">
+<strong>Example:</strong> Find a positive and a negative coterminal angle for 100°.
+<br>
+<strong>Positive:</strong> 100° + 360° = 460°
+<br>
+<strong>Negative:</strong> 100° - 360° = -260°
+</div>
+</div>
+
+<!-- Arc Length and Sector Area -->
+<div class="section">
+<h2>5. Arc Length and Sector Area</h2>
+<p>These formulas rely on the proportion of the angle to the whole circle. <strong>Note: The angle θ must be in Radians for these standard formulas.</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Formula</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Arc Length (s)</strong></td>
+<td>s = rθ</td>
+<td>Length of the curved part of the circle.</td>
+</tr>
+<tr>
+<td><strong>Sector Area (A)</strong></td>
+<td>A = <span class="math-fraction"><span class="math-num">1</span><span class="math-den">2</span></span>r²θ</td>
+<td>Area of the "pie slice" region.</td>
+</tr>
+</tbody>
+</table>
+
+<div class="interactive-container">
+<div class="canvas-wrapper">
+<canvas id="sectorCanvas" width="300" height="300"></canvas>
+</div>
+<div class="controls">
+<h4>Interactive Calculator</h4>
+<label>Radius (r):</label>
+<input type="number" id="radiusInput" value="5" min="1" max="20" style="width: 100%; padding: 5px; margin-bottom: 10px;">
+
+<label>Angle (degrees):</label>
+<input type="range" id="sectorAngleSlider" min="0" max="360" value="90">
+<div class="data-display">
+Angle: <span id="sectorDegDisplay">90</span>°<br>
+Angle (rad): <span id="sectorRadDisplay">1.57</span> rad<br>
+<hr>
+<strong>Arc Length (s):</strong> <span id="arcLengthResult">7.85</span><br>
+<strong>Sector Area (A):</strong> <span id="sectorAreaResult">19.63</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Supplementary and Complementary -->
+<div class="section">
+<h2>6. Supplementary and Complementary Angles</h2>
+<p>These terms describe pairs of angles that add up to specific totals.</p>
+<ul>
+<li><strong>Complementary Angles:</strong> Two angles whose sum is 90° (a right angle).
+<br><em>Example:</em> 30° and 60°.
+</li>
+<li><strong>Supplementary Angles:</strong> Two angles whose sum is 180° (a straight line).
+<br><em>Example:</em> 110° and 70°.
+</li>
+</ul>
+</div>
+
+<!-- Real World Application -->
+<div class="section">
+<h2>7. Real-World Application</h2>
+<div class="example-box">
+<strong>Problem:</strong> A car tire has a diameter of 27 inches. If the car travels 1 mile (5280 feet), how many revolutions does the tire make?
+<br><br>
+<strong>Solution Steps:</strong>
+<ol>
+<li><strong>Find Radius:</strong> r = 27 / 2 = 13.5 inches.</li>
+<li><strong>Find Circumference (Distance per rev):</strong> C = 2πr = 2 · π · 13.5 ≈ 84.82 inches.</li>
+<li><strong>Convert Total Distance to Inches:</strong> 1 mile = 5280 feet. 5280 · 12 = 63,360 inches.</li>
+<li><strong>Divide Total Distance by Circumference:</strong> 63,360 / 84.82 ≈ 746.99.</li>
+</ol>
+<strong>Answer:</strong> Approximately 747 revolutions.
+</div>
+</div>
+
+<!-- Quiz Section -->
+<div class="section">
+<h2>8. Interactive Practice Quiz</h2>
+<p>Test your knowledge. Select the best answer for each question.</p>
+
+<!-- Q1 -->
+<div class="quiz-question" id="q1">
+<p><strong>1. Which of the following is equivalent to 1 radian?</strong></p>
+<div class="options">
+<label><input type="radio" name="q1" value="a"> A) 57.3°</label>
+<label><input type="radio" name="q1" value="b"> B) 90°</label>
+<label><input type="radio" name="q1" value="c"> C) 180°</label>
+<label><input type="radio" name="q1" value="d"> D) 360°</label>
+</div>
+<button class="check-btn" onclick="checkAnswer('q1', 'a', 'Correct! 1 rad ≈ 57.3 degrees.')">Check Answer</button>
+<div class="feedback"></div>
+</div>
+
+<!-- Q2 -->
+<div class="quiz-question" id="q2">
+<p><strong>2. Convert 45° to radians.</strong></p>
+<div class="options">
+<label><input type="radio" name="q2" value="a"> A) <span class="math-fraction"><span class="math-num">π</span><span class="math-den">3</span></span></label>
+<label><input type="radio" name="q2" value="b"> B) <span class="math-fraction"><span class="math-num">π</span><span class="math-den">4</span></span></label>
+<label><input type="radio" name="q2" value="c"> C) <span class="math-fraction"><span class="math-num">π</span><span class="math-den">6</span></span></label>
+<label><input type="radio" name="q2" value="d"> D) <span class="math-fraction"><span class="math-num">π</span><span class="math-den">2</span></span></label>
+</div>
+<button class="check-btn" onclick="checkAnswer('q2', 'b', 'Correct! 45 · π/180 = π/4.')">Check Answer</button>
+<div class="feedback"></div>
+</div>
+
+<!-- Q3 -->
+<div class="quiz-question" id="q3">
+<p><strong>3. What is a coterminal angle for 30°?</strong></p>
+<div class="options">
+<label><input type="radio" name="q3" value="a"> A) 390°</label>
+<label><input type="radio" name="q3" value="b"> B) 210°</label>
+<label><input type="radio" name="q3" value="c"> C) 150°</label>
+<label><input type="radio" name="q3" value="d"> D) -30°</label>
+</div>
+<button class="check-btn" onclick="checkAnswer('q3', 'a', 'Correct! 30 + 360 = 390.')">Check Answer</button>
+<div class="feedback"></div>
+</div>
+
+<!-- Q4 -->
+<div class="quiz-question" id="q4">
+<p><strong>4. If two angles are complementary, their sum is:</strong></p>
+<div class="options">
+<label><input type="radio" name="q4" value="a"> A) 180°</label>
+<label><input type="radio" name="q4" value="b"> B) 90°</label>
+<label><input type="radio" name="q4" value="c"> C) 360°</label>
+<label><input type="radio" name="q4" value="d"> D) π radians</label>
+</div>
+<button class="check-btn" onclick="checkAnswer('q4', 'b', 'Correct! Complementary angles add to 90 degrees.')">Check Answer</button>
+<div class="feedback"></div>
+</div>
+
+<!-- Q5 -->
+<div class="quiz-question" id="q5">
+<p><strong>5. Find the arc length of a circle with radius 4 cm and central angle <span class="math-fraction"><span class="math-num">π</span><span class="math-den">3</span></span> radians.</strong></p>
+<div class="options">
+<label><input type="radio" name="q5" value="a"> A) <span class="math-fraction"><span class="math-num">4π</span><span class="math-den">3</span></span> cm</label>
+<label><input type="radio" name="q5" value="b"> B) <span class="math-fraction"><span class="math-num">2π</span><span class="math-den">3</span></span> cm</label>
+<label><input type="radio" name="q5" value="c"> C) 4π cm</label>
+<label><input type="radio" name="q5" value="d"> D) 12π cm</label>
+</div>
+<button class="check-btn" onclick="checkAnswer('q5', 'a', 'Correct! s = rθ = 4 · π/3 = 4π/3.')">Check Answer</button>
+<div class="feedback"></div>
+</div>
+
+<!-- Q6 -->
+<div class="quiz-question" id="q6">
+<p><strong>6. An angle in standard position starts at the ______ axis.</strong></p>
+<div class="options">
+<label><input type="radio" name="q6" value="a"> A) Negative Y</label>
+<label><input type="radio" name="q6" value="b"> B) Positive X</label>
+<label><input type="radio" name="q6" value="c"> C) Positive Y</label>
+<label><input type="radio" name="q6" value="d"> D) Negative X</label>
+</div>
+<button class="check-btn" onclick="checkAnswer('q6', 'b', 'Correct! Standard position begins on the Positive X-axis.')">Check Answer</button>
+<div class="feedback"></div>
+</div>
+
+<!-- Q7 -->
+<div class="quiz-question" id="q7">
+<p><strong>7. Convert <span class="math-fraction"><span class="math-num">5π</span><span class="math-den">2</span></span> radians to degrees.</strong></p>
+<div class="options">
+<label><input type="radio" name="q7" value="a"> A) 270°</label>
+<label><input type="radio" name="q7" value="b"> B) 450°</label>
+<label><input type="radio" name="q7" value="c"> C) 500°</label>
+<label><input type="radio" name="q7" value="d"> D) 90°</label>
+</div>
+<button class="check-btn" onclick="checkAnswer('q7', 'b', 'Correct! 5π/2 · 180/π = 5 · 90 = 450°.')">Check Answer</button>
+<div class="feedback"></div>
+</div>
+
+<!-- Q8 -->
+<div class="quiz-question" id="q8">
+<p><strong>8. What is the area of a sector with radius 3 and angle <span class="math-fraction"><span class="math-num">π</span><span class="math-den">2</span></span>?</strong></p>
+<div class="options">
+<label><input type="radio" name="q8" value="a"> A) 3π</label>
+<label><input type="radio" name="q8" value="b"> B) <span class="math-fraction"><span class="math-num">9π</span><span class="math-den">4</span></span></label>
+<label><input type="radio" name="q8" value="c"> C) 9π</label>
+<label><input type="radio" name="q8" value="d"> D) <span class="math-fraction"><span class="math-num">3π</span><span class="math-den">2</span></span></label>
+</div>
+<button class="check-btn" onclick="checkAnswer('q8', 'b', 'Correct! A = ½r²θ = ½(3²)(π/2) = 9π/4.')">Check Answer</button>
+<div class="feedback"></div>
+</div>
+
+<!-- Q9 -->
+<div class="quiz-question" id="q9">
+<p><strong>9. Which is larger: <span class="math-fraction"><span class="math-num">π</span><span class="math-den">3</span></span> or 60°?</strong></p>
+<div class="options">
+<label><input type="radio" name="q9" value="a"> A) <span class="math-fraction"><span class="math-num">π</span><span class="math-den">3</span></span></label>
+<label><input type="radio" name="q9" value="b"> B) 60°</label>
+<label><input type="radio" name="q9" value="c"> C) They are equal</label>
+<label><input type="radio" name="q9" value="d"> D) Cannot be compared</label>
+</div>
+<button class="check-btn" onclick="checkAnswer('q9', 'c', 'Correct! π/3 · 180/π = 60°.')">Check Answer</button>
+<div class="feedback"></div>
+</div>
+
+<!-- Q10 -->
+<div class="quiz-question" id="q10">
+<p><strong>10. If an angle measures 200°, it is located in which quadrant?</strong></p>
+<div class="options">
+<label><input type="radio" name="q10" value="a"> A) Quadrant I</label>
+<label><input type="radio" name="q10" value="b"> B) Quadrant II</label>
+<label><input type="radio" name="q10" value="c"> C) Quadrant III</label>
+<label><input type="radio" name="q10" value="d"> D) Quadrant IV</label>
+</div>
+<button class="check-btn" onclick="checkAnswer('q10', 'c', 'Correct! Q1: 0-90, Q2: 90-180, Q3: 180-270. So 200 is in Q3.')">Check Answer</button>
+<div class="feedback"></div>
+</div>
+
+</div>
+
+<script>
+// --- Unit Circle Interaction ---
+const unitCanvas = document.getElementById('unitCircleCanvas');
+const uCtx = unitCanvas.getContext('2d');
+const slider = document.getElementById('angleSlider');
+const degDisplay = document.getElementById('degDisplay');
+const radDisplay = document.getElementById('radDisplay');
+
+function drawUnitCircle(angleDeg) {
+const w = unitCanvas.width;
+const h = unitCanvas.height;
+const cx = w / 2;
+const cy = h / 2;
+const r = 100;
+
+uCtx.clearRect(0, 0, w, h);
+
+// Draw Axes
+uCtx.beginPath();
+uCtx.moveTo(0, cy);
+uCtx.lineTo(w, cy);
+uCtx.moveTo(cx, 0);
+uCtx.lineTo(cx, h);
+uCtx.strokeStyle = '#ccc';
+uCtx.lineWidth = 1;
+uCtx.stroke();
+
+// Draw Circle
+uCtx.beginPath();
+uCtx.arc(cx, cy, r, 0, 2 * Math.PI);
+uCtx.strokeStyle = '#333';
+uCtx.lineWidth = 2;
+uCtx.stroke();
+
+// Calculate Angle in Radians
+// Note: Canvas Y-axis is inverted (down is positive).
+// To draw standard mathematical angles (CCW from East), we negate the angle for sine.
+const angleRad = (angleDeg * Math.PI) / 180;
+
+// Terminal Point Coordinates
+const tx = cx + r * Math.cos(-angleRad);
+const ty = cy + r * Math.sin(-angleRad);
+
+// Draw Angle Arc (Visual representation of the sweep)
+uCtx.beginPath();
+// Start at 0 (East), end at -angleRad (because Y is flipped)
+// The last parameter 'anticlockwise' should be true if angleDeg > 0
+uCtx.arc(cx, cy, 30, 0, -angleRad, angleDeg > 0);
+uCtx.strokeStyle = '#e74c3c';
+uCtx.lineWidth = 3;
+uCtx.stroke();
+
+// Draw Terminal Ray
+uCtx.beginPath();
+uCtx.moveTo(cx, cy);
+uCtx.lineTo(tx, ty);
+uCtx.strokeStyle = '#2980b9';
+uCtx.lineWidth = 2;
+uCtx.stroke();
+
+// Draw Point
+uCtx.beginPath();
+uCtx.arc(tx, ty, 5, 0, 2 * Math.PI);
+uCtx.fillStyle = '#2980b9';
+uCtx.fill();
+}
+
+slider.addEventListener('input', function() {
+const val = parseInt(this.value);
+degDisplay.textContent = val;
+const radVal = (val * Math.PI) / 180;
+radDisplay.textContent = radVal.toFixed(3);
+drawUnitCircle(val);
+});
+
+// Initial Draw on Load
+window.onload = function() {
+drawUnitCircle(45);
+drawSector();
+};
+
+
+// --- Sector Area Interaction ---
+const secCanvas = document.getElementById('sectorCanvas');
+const sCtx = secCanvas.getContext('2d');
+const secSlider = document.getElementById('sectorAngleSlider');
+const radiusInput = document.getElementById('radiusInput');
+const secDegDisplay = document.getElementById('sectorDegDisplay');
+const secRadDisplay = document.getElementById('sectorRadDisplay');
+const arcLenRes = document.getElementById('arcLengthResult');
+const secAreaRes = document.getElementById('sectorAreaResult');
+
+function drawSector() {
+const w = secCanvas.width;
+const h = secCanvas.height;
+const cx = w / 2;
+const cy = h / 2;
+
+let rVal = parseFloat(radiusInput.value);
+// Validate radius
+if (isNaN(rVal) || rVal <= 0) rVal = 1;
+
+const degVal = parseFloat(secSlider.value);
+
+// Scale for visualization (max radius 20 maps to 120px)
+const scale = 120 / 20;
+const rPx = rVal * scale;
+
+sCtx.clearRect(0, 0, w, h);
+
+// Draw Reference Circle (shows the sector as a slice of the whole)
+sCtx.beginPath();
+sCtx.arc(cx, cy, rPx, 0, 2 * Math.PI);
+sCtx.strokeStyle = '#ccc';
+sCtx.lineWidth = 1;
+sCtx.stroke();
+
+// Draw Sector Fill
+const angleRad = (degVal * Math.PI) / 180;
+
+sCtx.beginPath();
+sCtx.moveTo(cx, cy);
+// Canvas arc: start 0 (East), end -angleRad (CCW visually due to Y flip)
+// anticlockwise is true if degVal > 0
+sCtx.arc(cx, cy, rPx, 0, -angleRad, degVal > 0);
+sCtx.closePath();
+sCtx.fillStyle = 'rgba(52, 152, 219, 0.3)';
+sCtx.fill();
+sCtx.strokeStyle = '#2980b9';
+sCtx.lineWidth = 2;
+sCtx.stroke();
+
+// Draw Radius Line (Terminal Side)
+const tx = cx + rPx * Math.cos(-angleRad);
+const ty = cy + rPx * Math.sin(-angleRad);
+
+sCtx.beginPath();
+sCtx.moveTo(cx, cy);
+sCtx.lineTo(tx, ty);
+sCtx.strokeStyle = '#2980b9';
+sCtx.lineWidth = 2;
+sCtx.stroke();
+
+// Update Text Displays
+secDegDisplay.textContent = degVal;
+secRadDisplay.textContent = angleRad.toFixed(3);
+
+// Calculate Arc Length and Area
+// s = r theta (theta in radians)
+const arcLength = rVal * angleRad;
+// A = 0.5 r^2 theta
+const area = 0.5 * Math.pow(rVal, 2) * angleRad;
+
+arcLenRes.textContent = arcLength.toFixed(2);
+secAreaRes.textContent = area.toFixed(2);
+}
+
+secSlider.addEventListener('input', drawSector);
+radiusInput.addEventListener('input', drawSector);
+
+
+// --- Quiz Logic ---
+function checkAnswer(questionId, correctValue, feedbackText) {
+const questionDiv = document.getElementById(questionId);
+const options = questionDiv.querySelectorAll('input[type="radio"]');
+let selectedValue = null;
+
+for (const option of options) {
+if (option.checked) {
+selectedValue = option.value;
+break;
+}
+}
+
+const feedbackDiv = questionDiv.querySelector('.feedback');
+feedbackDiv.style.display = 'block';
+
+if (!selectedValue) {
+feedbackDiv.textContent = "Please select an answer.";
+feedbackDiv.className = "feedback";
+return;
+}
+
+if (selectedValue === correctValue) {
+feedbackDiv.textContent = feedbackText;
+feedbackDiv.className = "feedback correct";
+} else {
+feedbackDiv.textContent = "Incorrect. Please try again.";
+feedbackDiv.className = "feedback incorrect";
+}
+}
+</script>
+</body>
+</html>
