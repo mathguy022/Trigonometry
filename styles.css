@@ -221,6 +221,16 @@ li { margin-bottom: .4em; }
 
 .card > :last-child { margin-bottom: 0; }
 
+/* Two-up comparison panels */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: 1.1rem;
+  margin: 1.4rem 0;
+}
+
+.grid-2 > .card { margin-bottom: 0; }
+
 .callout {
   position: relative;
   padding: 1.25rem 1.5rem 1.25rem 1.6rem;
@@ -570,11 +580,13 @@ button:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
   counter-reset: step;
 }
 
-.steps > li { margin-bottom: .55rem; }
+.steps > li {
+  margin-bottom: .55rem;
+  counter-increment: step;
+}
 
 .steps > li::marker {
   content: counter(step) ".  ";
-  counter-increment: step;
   color: var(--brand);
   font-weight: 700;
 }
@@ -851,6 +863,15 @@ svg text { font-family: var(--font-sans); }
   fill: var(--accent);
 }
 
+.side.sm { font-size: 12px; }
+
+.quadrant {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 17px;
+  fill: var(--ink-faint);
+}
+
 .len {
   font-family: var(--font-serif);
   font-style: italic;
@@ -886,6 +907,7 @@ svg text { font-family: var(--font-sans); }
 .d-fill { fill: var(--brand-soft); stroke: none; }
 .d-fill.alt { fill: var(--accent-soft); }
 .d-fill.mute { fill: var(--surface-sunk); }
+.d-fill.sector { stroke: var(--brand); stroke-width: 1.4; stroke-linejoin: round; }
 
 .d-text {
   font-family: var(--font-serif);

@@ -332,10 +332,13 @@
   <div class="example">
     <span class="label">Example 3</span>
     <p class="prompt">A right triangle has one angle of $60^\circ$ and a hypotenuse of length $20$. Find the unknown side lengths and the missing angle measure.</p>
-    <p>First the missing angle: the angles of a triangle sum to $180^\circ$, so</p>
-    <p>$$180^\circ-60^\circ-90^\circ=30^\circ.$$</p>
-    <p>Assign $a$ to the side adjacent to the $60^\circ$ angle and $b$ to the opposite side. Since this is a $30^\circ$–$60^\circ$–$90^\circ$ triangle, the hypotenuse is twice the shortest side. From $20=2x$ we get $x=10$, so $a=10$, and</p>
-    <p>$$b=\sqrt3\,x=3\cdot10=10\sqrt3.$$</p>
+    <ol class="steps">
+      <li><strong>Find the missing angle.</strong> The angles of a triangle sum to $180^\circ$, so
+        $$180^\circ-60^\circ-90^\circ=30^\circ.$$</li>
+      <li><strong>Assign variables.</strong> Let $a$ be the side adjacent to the $60^\circ$ angle and $b$ the opposite side.</li>
+      <li><strong>Use the $30^\circ$–$60^\circ$–$90^\circ$ ratio.</strong> The hypotenuse is twice the shortest side, so from $20=2x$ we get $x=10$, hence $a=10$, and
+        $$b=\sqrt3\,x=3\cdot10=10\sqrt3.$$</li>
+    </ol>
     <figure class="figure">
       <svg viewBox="0 0 300 245" role="img" aria-label="Right triangle with hypotenuse 20, legs 10 and 10 square root 3, angles 60 and 30 degrees.">
         <polygon points="40,215 130,215 130,60" fill="#f6f7fd" stroke="#3a3a8c" stroke-width="2.5" stroke-linejoin="round"/>
@@ -353,12 +356,15 @@
   <div class="example">
     <span class="label">Example 4</span>
     <p class="prompt">Find the measure of the missing angle and the lengths of the missing sides in the right triangle shown, where one angle is $30^\circ$ and the adjacent leg is $7$.</p>
-    <p>The missing angle is</p>
-    <p>$$180^\circ-90^\circ-30^\circ=60^\circ.$$</p>
-    <p>Label the hypotenuse $c$ and the side opposite the $30^\circ$ angle $b$. For $c$, use cosine:</p>
-    <p>$$\cos30^\circ=\frac{7}{c}\qquad\Longrightarrow\qquad c=\frac{7}{\cos30^\circ}=\frac{7}{\sqrt3/2}=\frac{14}{\sqrt3}$$</p>
-    <p>For $b$, use tangent:</p>
-    <p>$$\tan30^\circ=\frac{b}{7}\qquad\Longrightarrow\qquad b=7\tan30^\circ=7\cdot\frac{1}{\sqrt3}=\frac{7}{\sqrt3}$$</p>
+    <ol class="steps">
+      <li><strong>Find the missing angle.</strong>
+        $$180^\circ-90^\circ-30^\circ=60^\circ.$$</li>
+      <li><strong>Label the sides.</strong> Let $c$ be the hypotenuse and $b$ the side opposite the $30^\circ$ angle.</li>
+      <li><strong>Find $c$ with cosine.</strong>
+        $$\cos30^\circ=\frac{7}{c}\qquad\Longrightarrow\qquad c=\frac{7}{\cos30^\circ}=\frac{7}{\sqrt3/2}=\frac{14}{\sqrt3}$$</li>
+      <li><strong>Find $b$ with tangent.</strong>
+        $$\tan30^\circ=\frac{b}{7}\qquad\Longrightarrow\qquad b=7\tan30^\circ=7\cdot\frac{1}{\sqrt3}=\frac{7}{\sqrt3}$$</li>
+    </ol>
     <figure class="figure">
       <svg viewBox="0 0 300 235" role="img" aria-label="Right triangle with leg 7, hypotenuse 14 over square root 3, and angle 30 degrees.">
         <polygon points="40,200 180,200 180,119" fill="#f6f7fd" stroke="#3a3a8c" stroke-width="2.5" stroke-linejoin="round"/>
